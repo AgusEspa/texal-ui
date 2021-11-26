@@ -42,9 +42,9 @@ const App = () => {
   const removePerson = id => {
 		personService
 			.remove(id)
-			.then(returnedPerson => {
-        setPersons(persons.filter(person => person !== returnedPerson));
-      });
+			// .then(returnedPerson => {
+      //   setPersons(persons.filter(person => person !== returnedPerson));
+      // });
 	}
 
   const handleNameChange = (event) => {
