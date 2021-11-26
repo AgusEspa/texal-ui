@@ -1,6 +1,22 @@
-import search from '../services/search';
+import Contact from "./Contact";
 
 const ContactList = (props) => {
+
+	const search = (nameToSearch, persons) => {
+		if (nameToSearch === '') {
+		  return (
+			persons.map(person =>
+				<Contact id={person.id} name={person.name} number={person.number} />)
+		  );
+		} else {
+		  return (
+			persons
+			.filter(person => person.name.toLowerCase().startsWith(nameToSearch.toLowerCase()))
+			.map(person =>
+				<Contact id={person.id} name={person.name} number={person.number} />)
+		  );
+		}
+	  }
 
 	return (
 		<div>
