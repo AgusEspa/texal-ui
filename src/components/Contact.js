@@ -1,9 +1,19 @@
+import personService from '../services/persons';
+
 const Contact = (props) => {
 
+	const removePerson = () => {
+		personService
+			.remove(props.id)
+	}
+
 	return (
-		<li key={props.id}>
+		<li>
 			{props.name}: {props.number}
-			<button>delete</button>
+			<button
+				onClick={removePerson}>
+				delete
+			</button>
 		</li>
 	);
 }
