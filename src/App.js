@@ -39,14 +39,6 @@ const App = () => {
 		}
 	}
 
-  const removePerson = id => {
-		personService
-			.remove(id)
-			// .then(returnedPerson => {
-      //   setPersons(persons.filter(person => person !== returnedPerson));
-      // });
-	}
-
   const handleNameChange = (event) => {
     setNewName(event.target.value);
   }
@@ -79,7 +71,6 @@ const App = () => {
         name={contactName}
         nameHandler={handleContactNameChange}
         persons={persons}
-        function={removePerson}
       />
 
     </div>

@@ -1,11 +1,17 @@
+import personService from '../services/persons';
 
 const Contact = (props) => {
+
+	const removePerson = id => {
+		personService
+			.remove(props.id);
+	}
 
 	return (
 		<li>
 			{props.name}: {props.number}
 			<button
-				onClick={props.function}>
+				onClick={removePerson}>
 				delete
 			</button>
 		</li>

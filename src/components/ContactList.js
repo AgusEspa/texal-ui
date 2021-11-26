@@ -13,7 +13,7 @@ const ContactList = (props) => {
 			persons
 			.filter(person => person.name.toLowerCase().startsWith(nameToSearch.toLowerCase()))
 			.map(person =>
-				<Contact key={person.id} id={person.id} name={person.name} number={person.number} function={props.function}/>)
+				<Contact key={person.id} id={person.id} name={person.name} number={person.number} />)
 		  );
 		}
 	  }
