@@ -71,6 +71,7 @@ const App = () => {
         name={contactName}
         nameHandler={handleContactNameChange}
         persons={persons}
+        setPersons={setPersons}
       />
 
     </div>

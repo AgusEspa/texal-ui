@@ -2,9 +2,12 @@ import personService from '../services/persons';
 
 const Contact = (props) => {
 
-	const removePerson = id => {
+	const removePerson = () => {
 		personService
-			.remove(props.id);
+			.remove(props.id)
+			.then(returnedPerson => {
+				props.setPersons(props.persons.filter(person => person.id !== props.id))
+			});
 	}
 
 	return (

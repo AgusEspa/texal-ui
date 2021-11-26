@@ -6,14 +6,14 @@ const ContactList = (props) => {
 		if (nameToSearch === '') {
 		  return (
 			persons.map(person =>
-				<Contact key={person.id} id={person.id} name={person.name} number={person.number} />)
+				<Contact key={person.id} id={person.id} name={person.name} number={person.number} persons={props.persons} setPersons={props.setPersons}/>)
 		  );
 		} else {
 		  return (
 			persons
 			.filter(person => person.name.toLowerCase().startsWith(nameToSearch.toLowerCase()))
 			.map(person =>
-				<Contact key={person.id} id={person.id} name={person.name} number={person.number} />)
+				<Contact key={person.id} id={person.id} name={person.name} number={person.number} persons={props.persons} setPersons={props.setPersons}/>)
 		  );
 		}
 	  }
