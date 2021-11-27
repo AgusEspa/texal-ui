@@ -29,8 +29,10 @@ const App = () => {
         }
         personService
           .change(personId, personObject)
-          .then(returnedPerson => {
-            setPersons(persons.concat(returnedPerson));
+          .then(() => {
+            setPersons(persons
+              .filter(person => 
+                persons.indexOf(person) !== persons.findIndex(person => person.number === newNumber)));
             setNewName('');
             setNewNumber('');
           })
