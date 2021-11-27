@@ -17,28 +17,33 @@ const App = () => {
       });
   }, []);
 
+  const updatePerson = () => {
+    const personId = persons[persons.findIndex(person => person.name === newName)].id;
+    const personObject = {
+      name: newName,
+      number: newNumber,
+    }
+    personService
+      .change(personId, personObject)
+      .then((returnedPerson) => {
+        setPersons(
+          persons
+            .filter(person => 
+              persons.indexOf(person) !== persons.findIndex(person => person.name === newName && person.number !== newNumber))
+            .concat(returnedPerson));
+      });
+  }
+
   const addPerson = (event) => {
 		event.preventDefault();
 	
 		if (persons.map(person => person.name).includes(newName)) {
       if (window.confirm(`${newName} is already added to phonebook. Do you want to change the number?`)) {
-        const personId = persons[persons.findIndex(person => person.name === newName)].id;
-        const personObject = {
-          name: newName,
-          number: newNumber,
-        }
-        personService
-          .change(personId, personObject)
-          .then(() => {
-            setPersons(persons
-              .filter(person => 
-                persons.indexOf(person) !== persons.findIndex(person => person.number === newNumber)));
-            setNewName('');
-            setNewNumber('');
-          })
-      } else {
+        updatePerson(newName);
         setNewName('');
         setNewNumber('');
+      } else {
+        setNewName('');
       }
 		} else {
 		  const personObject = {
