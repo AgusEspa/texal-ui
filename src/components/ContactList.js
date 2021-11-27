@@ -2,18 +2,29 @@ import Contact from "./Contact";
 
 const ContactList = (props) => {
 
+	const sortFuncion = (a, b) => {
+		let fa = a.name.toLowerCase(),
+		fb = b.name.toLowerCase();
+		if (fa < fb) return -1;
+		if (fa > fb) return 1;
+		return 0;
+	}
+
 	const search = (nameToSearch, persons) => {
 		if (nameToSearch === '') {
 		  return (
-			persons.map(person =>
-				<Contact key={person.id} id={person.id} name={person.name} number={person.number} persons={props.persons} setPersons={props.setPersons}/>)
+			persons
+				.sort(sortFuncion)
+				.map(person =>
+					<Contact key={person.id} id={person.id} name={person.name} number={person.number} persons={props.persons} setPersons={props.setPersons}/>)
 		  );
 		} else {
 		  return (
 			persons
-			.filter(person => person.name.toLowerCase().startsWith(nameToSearch.toLowerCase()))
-			.map(person =>
-				<Contact key={person.id} id={person.id} name={person.name} number={person.number} persons={props.persons} setPersons={props.setPersons}/>)
+				.filter(person => person.name.toLowerCase().startsWith(nameToSearch.toLowerCase()))
+				.sort(sortFuncion)
+				.map(person =>
+					<Contact key={person.id} id={person.id} name={person.name} number={person.number} persons={props.persons} setPersons={props.setPersons}/>)
 		  );
 		}
 	  }
