@@ -21,9 +21,23 @@ const App = () => {
 		event.preventDefault();
 	
 		if (persons.map(person => person.name).includes(newName)) {
-		  window.alert(`${newName} is already added to phonebook`);
-		  setNewName('');
-		  setNewNumber('');
+      if (window.confirm(`${newName} is already added to phonebook. Do you want to change the number?`)) {
+        const personId = persons[persons.findIndex(person => person.name === newName)].id;
+        const personObject = {
+          name: newName,
+          number: newNumber,
+        }
+        personService
+          .change(personId, personObject)
+          .then(returnedPerson => {
+            setPersons(persons.concat(returnedPerson));
+            setNewName('');
+            setNewNumber('');
+          })
+      } else {
+        setNewName('');
+        setNewNumber('');
+      }
 		} else {
 		  const personObject = {
 			  name: newName,
