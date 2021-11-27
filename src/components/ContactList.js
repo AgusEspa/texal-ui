@@ -32,9 +32,11 @@ const ContactList = (props) => {
 	return (
 		<div>
 			<form onSubmit={props.action}> 
-				<div>Search by name: <input 
-					value={props.name}
-					onChange={props.nameHandler} />
+				<div>
+				<span>Search by name: </span>
+					<input 
+						value={props.name}
+						onChange={props.nameHandler} />
 				</div>
 			</form>
 
