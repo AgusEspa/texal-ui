@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import PersonForm from './components/PersonForm';
 import ContactList from './components/ContactList';
 import personService from './services/persons';
+import Notification from './components/Notification';
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
   const [contactName, setContactName] = useState('');
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     personService
@@ -40,6 +42,10 @@ const App = () => {
 		if (persons.map(person => person.name).includes(newName)) {
       if (window.confirm(`${newName} is already added to phonebook. Do you want to change the number?`)) {
         updatePerson(newName);
+        setMessage(`Updated ${newName} successfully`);
+        setTimeout(() => {
+          setMessage(null)
+        }, 3000);
         setNewName('');
         setNewNumber('');
       } else {
@@ -54,6 +60,10 @@ const App = () => {
         .create(personObject)
         .then(returnedPerson => {
           setPersons(persons.concat(returnedPerson));
+          setMessage(`Added ${newName} successfully`);
+          setTimeout(() => {
+            setMessage(null)
+          }, 3000);
           setNewName('');
           setNewNumber('');
       });
@@ -85,6 +95,8 @@ const App = () => {
         number={newNumber}
         numberHandler={handleNumberChange}
       />
+
+      <Notification message={message} />
       
       <h3>Contacts</h3>
       <ContactList 
@@ -93,6 +105,7 @@ const App = () => {
         nameHandler={handleContactNameChange}
         persons={persons}
         setPersons={setPersons}
+        setMessage={setMessage}
       />
 
     </div>

@@ -1,3 +1,4 @@
+import React from 'react';
 import Contact from "./Contact";
 
 const ContactList = (props) => {
@@ -16,7 +17,7 @@ const ContactList = (props) => {
 			persons
 				.sort(sortFuncion)
 				.map(person =>
-					<Contact key={person.id} id={person.id} name={person.name} number={person.number} persons={props.persons} setPersons={props.setPersons}/>)
+					<Contact key={person.id} id={person.id} name={person.name} number={person.number} persons={props.persons} setPersons={props.setPersons} setMessage={props.setMessage} />)
 		  );
 		} else {
 		  return (
@@ -24,7 +25,7 @@ const ContactList = (props) => {
 				.filter(person => person.name.toLowerCase().startsWith(nameToSearch.toLowerCase()))
 				.sort(sortFuncion)
 				.map(person =>
-					<Contact key={person.id} id={person.id} name={person.name} number={person.number} persons={props.persons} setPersons={props.setPersons}/>)
+					<Contact key={person.id} id={person.id} name={person.name} number={person.number} persons={props.persons} setPersons={props.setPersons} setMessage={props.setMessage} />)
 		  );
 		}
 	  }
