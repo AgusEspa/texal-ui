@@ -85,6 +85,8 @@ const App = () => {
   return (
     <div>
 
+      <Notification message={message} />
+
       <h2>Phonebook</h2>
 
       <h3>Add new contact</h3>
@@ -95,8 +97,6 @@ const App = () => {
         number={newNumber}
         numberHandler={handleNumberChange}
       />
-
-      <Notification message={message} />
       
       <h3>Contacts</h3>
       <ContactList 

@@ -7,7 +7,7 @@ const Notification = ({message}) => {
 	const spanStyle = {
 		color: 'green',
 		background: 'lightgrey',
-  		fontSize: 16,
+  		fontSize: 14,
   		borderStyle: 'solid',
   		borderRadius: 5,
   		padding: 10,
