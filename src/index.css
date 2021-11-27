@@ -15,3 +15,8 @@ p, h1, h2, h3, li, span {
 button {
   margin-left: 5px;
 }
+
+input {
+  background-color: rgb(46, 46, 46);
+  border: 0px;
+}
