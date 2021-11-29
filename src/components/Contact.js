@@ -7,11 +7,18 @@ const Contact = (props) => {
 		personService
 			.remove(props.id)
 			.then(() => {
-				props.setPersons(props.persons.filter(person => person.id !== props.id))
-				props.setMessage(`${props.name} removed successfully`);
+				props.setPersons(props.persons.filter(person => person.id !== props.id));
+				props.setMessage(`${props.name} was removed successfully`);
 				setTimeout(() => {
 					props.setMessage(null)
 				}, 3000);
+			})
+			.catch (error => {
+				props.setMessage(`${props.name} is already deleted`);
+				setTimeout(() => {
+          			props.setMessage(null)
+        			}, 3000);
+				props.setPersons(props.persons.filter(person => person.id !== props.id));
 			});
 	}
 

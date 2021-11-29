@@ -16,7 +16,13 @@ const App = () => {
       .getAll()
       .then(initialPersons => {
         setPersons(initialPersons)
-      });
+      })
+      .catch(error => {
+        setMessage("Can't retrive contacts from database");
+        setTimeout(() => {
+          setMessage(null)
+        }, 5000);
+      })
   }, []);
 
   const updatePerson = () => {
@@ -32,7 +38,15 @@ const App = () => {
           persons
             .filter(person => 
               persons.indexOf(person) !== persons.findIndex(person => person.name === newName && person.number !== newNumber))
-            .concat(returnedPerson));
+            .concat(returnedPerson))
+      })
+      // fix catch, doesn't display refreshed items
+      .catch(error => {
+        setMessage(`Error updating ${newName}`);
+        setTimeout(() => {
+          setMessage(null)
+        }, 3000);
+        setPersons(persons.filter(person => person.name !== newName));
       });
   }
 
@@ -41,8 +55,8 @@ const App = () => {
 	
 		if (persons.map(person => person.name).includes(newName)) {
       if (window.confirm(`${newName} is already added to phonebook. Do you want to change the number?`)) {
-        updatePerson(newName);
-        setMessage(`Updated ${newName} successfully`);
+        updatePerson();
+        setMessage(`${newName} was updated successfully`);
         setTimeout(() => {
           setMessage(null)
         }, 3000);
@@ -60,7 +74,7 @@ const App = () => {
         .create(personObject)
         .then(returnedPerson => {
           setPersons(persons.concat(returnedPerson));
-          setMessage(`Added ${newName} successfully`);
+          setMessage(`${newName} was added successfully`);
           setTimeout(() => {
             setMessage(null)
           }, 3000);
