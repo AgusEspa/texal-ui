@@ -40,7 +40,6 @@ const App = () => {
               persons.indexOf(person) !== persons.findIndex(person => person.name === newName && person.number !== newNumber))
             .concat(returnedPerson))
       })
-      // fix catch, doesn't display refreshed items
       .catch(error => {
         setMessage(`Error updating ${newName}`);
         setTimeout(() => {
